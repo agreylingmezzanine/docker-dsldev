@@ -2,5 +2,5 @@
 docker run --rm -i -t \
     -v ~/.ssh:/home/user/.ssh:ro \
     -v ~/.he-dev:/home/user/.he-dev \
-    -v ~/code:/home/user/code \
+    -v ~/local_sourcecode:/sourcecode \
     ajmezza9/dsldev:latest
