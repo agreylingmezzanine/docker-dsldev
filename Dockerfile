@@ -1,7 +1,8 @@
 FROM ubuntu:latest
 # WORKDIR = /sourcecode
 
-RUN apt-get update && apt-get install -y wget curl git jq software-properties-common;
+#RUN apt-get update && apt-get install -y wget curl git jq software-properties-common;
+RUN apt-get update && apt-get install -y wget curl git jq openjdk-8-jdk;
 
 RUN useradd -m user
 RUN mkdir -p /home/user/.ssh
@@ -9,12 +10,12 @@ RUN chown -R user:user /home/user/.ssh
 RUN echo "Host *\n\tStrictHostKeyChecking no\n" >> /home/user/.ssh/config
 
 # Add the "JAVA" ppa
-RUN add-apt-repository -y \
-    ppa:ts.sch.gr/ppa
+# RUN add-apt-repository -y \
+#     ppa:ts.sch.gr/ppa
 
-# Install OpenJDK-8
-RUN apt-get update && \
-    apt-get install -y openjdk-8-jdk;
+# # Install OpenJDK-8
+# RUN apt-get update && \
+#     apt-get install -y openjdk-8-jdk;
 
 # Fix certificate issues
 RUN	apt-get install -y ca-certificates-java && \
