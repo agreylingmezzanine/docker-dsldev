@@ -2,7 +2,10 @@ FROM ubuntu:latest
 # WORKDIR = /sourcecode
 
 #RUN apt-get update && apt-get install -y wget curl git jq software-properties-common;
-RUN apt-get update && apt-get install -y wget curl git jq openjdk-8-jdk;
+RUN apt-get update && apt-get install -y wget curl nodejs npm git jq openjdk-8-jdk;
+
+#Used to merge lang files
+RUN npm install --global ini-merge
 
 RUN useradd -m user
 RUN mkdir -p /home/user/.ssh
@@ -18,9 +21,7 @@ RUN echo "Host *\n\tStrictHostKeyChecking no\n" >> /home/user/.ssh/config
 #     apt-get install -y openjdk-8-jdk;
 
 # Fix certificate issues
-RUN	apt-get install -y ca-certificates-java && \
-    apt-get clean && \
-    update-ca-certificates -f;
+RUN	apt-get install -y ca-certificates-java && update-ca-certificates -f;
 
 RUN apt-get clean;
 
